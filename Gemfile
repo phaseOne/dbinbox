@@ -1,10 +1,12 @@
 source 'https://rubygems.org'
+ruby "2.0.0"
 
 gem 'sinatra'
 gem 'dropbox-sdk'
 gem 'json'
 gem 'haml'
 gem 'coffee-script'
+gem 'less'
 # database
 gem 'dm-core'
 gem 'dm-types'

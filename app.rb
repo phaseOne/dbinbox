@@ -3,6 +3,7 @@ require 'dropbox_sdk'
 require 'json'
 require 'haml'
 require 'coffee-script'
+require 'less'
 # database from http://datamapper.org/getting-started.html
 require 'dm-core'
 require 'dm-types'
@@ -170,6 +171,13 @@ post '/' do
 
   # send them out to authenticate us
   redirect dbsession.get_authorize_url(url('/'))
+end
+
+get "/css/:file.css" do
+  halt 404 unless File.exist?("src/less/#{params[:file]}.less")
+  time = File.stat("src/less/#{params[:file]}.less").ctime
+  last_modified(time)
+  less params[:file].intern
 end
 
 get "/login" do
